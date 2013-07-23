@@ -8,9 +8,7 @@ public class App {
 	
 	public static void main(String[] args) {
 		ApplicationContext applCtx = fromXml();
-//		ApplicationContext applCtx = fromAnnotations();
-	
-		applCtx.
+//		ApplicationContext applCtx = fromAnnotations();ś
 	}
 	
 	
