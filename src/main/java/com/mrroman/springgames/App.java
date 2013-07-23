@@ -11,8 +11,8 @@ import com.mrroman.springgames.service.PlayerPresenter;
 public class App {
 	
 	public static void main(String[] args) {
-		ApplicationContext applCtx = fromXml();
-//		ApplicationContext applCtx = fromAnnotations();
+//		ApplicationContext applCtx = fromXml();
+		ApplicationContext applCtx = fromAnnotations();
 		
 		PlayerPresenter playerPresenter = applCtx.getBean(ConsolePlayerPresenter.class);
 		Player player = new Player();
@@ -24,9 +24,7 @@ public class App {
 	}
 
 	private static ApplicationContext fromAnnotations() {
-		 AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
-		 annotationConfigApplicationContext.register(Config.class);
-		 return annotationConfigApplicationContext;
+		 return new AnnotationConfigApplicationContext(Config.class);
 	}
 
 	private static ApplicationContext fromXml() {
