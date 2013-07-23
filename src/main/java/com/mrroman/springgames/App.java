@@ -1,34 +1,26 @@
 package com.mrroman.springgames;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRegistration;
 
-import com.mrroman.springgames.domain.Player;
-import com.mrroman.springgames.service.ConsolePlayerPresenter;
-import com.mrroman.springgames.service.PlayerPresenter;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
-public class App {
-	
-	public static void main(String[] args) {
-//		ApplicationContext applCtx = fromXml();
-		ApplicationContext applCtx = fromAnnotations();
-		
-		PlayerPresenter playerPresenter = applCtx.getBean(ConsolePlayerPresenter.class);
-		Player player = new Player();
-		player.setName("Konrad");
-		player.setSurname("Mrożek");
-		player.setAge(32);
-		player.setEmail("konrad.mrozek@gmail.com");
-		playerPresenter.present(player);
+public class App implements WebApplicationInitializer {
+
+	public void onStartup(ServletContext container)
+			throws javax.servlet.ServletException {
+		AnnotationConfigWebApplicationContext applContext = new AnnotationConfigWebApplicationContext();
+		applContext.register(Config.class);
+
+		container.addListener(new ContextLoaderListener(applContext));
+
+		ServletRegistration.Dynamic dispatcher = container.addServlet(
+				"dispatcher", new DispatcherServlet(applContext));
+		dispatcher.setLoadOnStartup(1);
+		dispatcher.addMapping("/");
 	}
 
-	private static ApplicationContext fromAnnotations() {
-		 return new AnnotationConfigApplicationContext(Config.class);
-	}
-
-	private static ApplicationContext fromXml() {
-		return new ClassPathXmlApplicationContext("applicationContext.xml");
-	}
-	
 }
