@@ -45,11 +45,11 @@ public class PersistenceConfig {
 		return dataSource;
 	}
 
-	@Bean
+	@Bean(name = "entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(configureDataSource());
-		entityManagerFactoryBean.setPackagesToScan("${package}");
+		entityManagerFactoryBean.setPackagesToScan("com.mrroman.springgames");
 		entityManagerFactoryBean
 				.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
@@ -62,7 +62,7 @@ public class PersistenceConfig {
 		return entityManagerFactoryBean;
 	}
 
-	@Bean
+	@Bean(name = "transactionManager")
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return new JpaTransactionManager();
 	}
