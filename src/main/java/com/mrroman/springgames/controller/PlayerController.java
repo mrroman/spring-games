@@ -1,5 +1,7 @@
 package com.mrroman.springgames.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +23,12 @@ public class PlayerController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String savePlayer(@ModelAttribute Player player, BindingResult result) {
-		return "redirect:" + player.getId();
+	public String savePlayer(@Valid @ModelAttribute Player player, BindingResult result) {
+		if (result.hasErrors()) {
+			return "player/edit";
+		} else {
+			return "redirect:" + player.getId();
+		}
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -32,7 +38,7 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String savePlayer(@PathVariable Integer id, @ModelAttribute Player player, BindingResult result) {
+	public String savePlayer(@PathVariable Integer id, @Valid @ModelAttribute Player player, BindingResult result) {
 		return "player/edit";
 	}
 	

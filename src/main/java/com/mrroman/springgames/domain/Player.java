@@ -1,5 +1,8 @@
 package com.mrroman.springgames.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Gracz.
  * 
@@ -7,10 +10,11 @@ package com.mrroman.springgames.domain;
 public class Player {
 
 	private int id;
-	private String name;
-	private String surname;
+	
+	@NotEmpty private String name;
+	@NotEmpty private String surname;
 	private int age;
-	private String email;
+	@NotEmpty @Email private String email;
 	
 	public int getId() {
 		return id;

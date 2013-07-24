@@ -6,14 +6,18 @@
 <p:page>
 <div class="container">
 	<f:form commandName="player">
-		<f:label path="name">Name:</f:label>
-		<f:input path="name"/>
-		<f:label path="surname">Surname:</f:label>
-		<f:input path="surname"/>
-		<f:label path="age" >Age:</f:label>
-		<f:input path="age"/>
-		<f:label path="email">E-mail:</f:label>
-		<f:input path="email"/>
+		<p:field path="name" label="Name">
+			<f:input path="name"/>
+		</p:field>
+		<p:field path="surname" label="Surname">
+			<f:input path="surname"/>
+		</p:field>
+		<p:field path="age" label="Age">
+			<f:input path="age"/>
+		</p:field>
+		<p:field path="email" label="E-mail">
+			<f:input path="email"/>
+		</p:field>
 		<button type="submit" class="btn">Submit</button>
 	</f:form>
 </div>
