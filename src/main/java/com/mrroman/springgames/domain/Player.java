@@ -12,6 +12,14 @@ public class Player {
 	private int age;
 	private String email;
 	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
