@@ -1,5 +1,10 @@
 package com.mrroman.springgames.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -7,13 +12,23 @@ import org.hibernate.validator.constraints.NotEmpty;
  * Gracz.
  * 
  */
+@Entity
 public class Player {
 
+	@Id
+	@GeneratedValue
 	private int id;
 	
+	@Column
 	@NotEmpty private String name;
+	
+	@Column
 	@NotEmpty private String surname;
+	
+	@Column
 	private int age;
+	
+	@Column
 	@NotEmpty @Email private String email;
 	
 	public int getId() {
