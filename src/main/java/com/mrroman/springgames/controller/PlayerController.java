@@ -30,7 +30,7 @@ public class PlayerController {
 			return "redirect:" + player.getId();
 		}
 	}
-
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String editPlayer(@PathVariable Integer id, Model model) {
 		model.addAttribute("player", new Player());
