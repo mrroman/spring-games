@@ -1,5 +1,10 @@
 package com.mrroman.springgames.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
@@ -7,13 +12,18 @@ import org.hibernate.validator.constraints.Range;
  * Dyscyplina sportu
  * 
  */
+@Entity
 public class Discipline {
 
+	@Id
+	@GeneratedValue
 	private int id;
 
+	@Column
 	@NotEmpty
 	private String name;
 
+	@Column
 	@Range(min = 1)
 	private int playersNumber;
 

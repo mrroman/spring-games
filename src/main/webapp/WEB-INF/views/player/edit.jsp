@@ -15,6 +15,11 @@
 		<p:field path="age" label="Age">
 			<f:input path="age"/>
 		</p:field>
+		<p:field path="discipline" label="Discipline">
+			<f:select path="discipline">
+				<f:options items="${disciplines}" itemLabel="name" itemValue="id" />
+			</f:select>
+		</p:field>
 		<p:field path="email" label="E-mail">
 			<f:input path="email"/>
 		</p:field>

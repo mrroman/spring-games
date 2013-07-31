@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.Constraint;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -30,6 +32,9 @@ public class Player {
 	
 	@Column
 	@NotEmpty @Email private String email;
+	
+	@ManyToOne
+	private Discipline discipline;
 	
 	public int getId() {
 		return id;
@@ -71,6 +76,14 @@ public class Player {
 		this.email = email;
 	}
 
+	public Discipline getDiscipline() {
+		return discipline;
+	}
+	
+	public void setDiscipline(Discipline discipline) {
+		this.discipline = discipline;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

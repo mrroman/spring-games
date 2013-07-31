@@ -1,9 +1,14 @@
 package com.mrroman.springgames;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.data.repository.support.DomainClassConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -31,6 +36,13 @@ public class Config extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
+	@Bean
+	@Autowired
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public DomainClassConverter domainClassConverter(ConversionService cs) {
+	    return new DomainClassConverter(cs);
+	}
+	
 	@Bean
 	public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
